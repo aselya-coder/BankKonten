@@ -1,0 +1,126 @@
+import { HeroContent } from '../types/heroTypes';
+import { PricingContent } from '../types/pricingTypes';
+import { TestimonialContent } from '../types/testimonialTypes';
+import { KeunggulanItem, WhyContentItem, UrgencyContent, NavLinkItem, FooterContent, WhatsAppContent } from '../types/contentTypes';
+
+export const defaultHero: HeroContent = {
+  title: "Gambar AI Cuma Rp 1.000",
+  subtitle: "Konten berkualitas tinggi untuk jualan online kamu.",
+  button_text: "🔥 ORDER SEKARANG via WhatsApp",
+  button_link: "https://wa.me/6281234567890?text=Halo%20BankKonten.id%2C%20saya%20mau%20order%20gambar%20AI!",
+};
+
+export const defaultPricing: PricingContent = {
+  title: "Pilih Paket Terbaikmu",
+  tiers: [
+    {
+      package_name: "Starter",
+      price: "Rp 20.000",
+      features: ["20 gambar AI HD", "Revisi 1x", "Format PNG/JPG", "Kirim via Google Drive"],
+      button_text: "Order 20 Gambar",
+    },
+    {
+      package_name: "Best Seller 🔥",
+      price: "Rp 45.000",
+      features: ["50 gambar AI HD", "Revisi 2x", "Format PNG/JPG", "Kirim via Google Drive", "Bonus 5 gambar", "Priority queue"],
+      button_text: "Order 50 Gambar",
+    },
+    {
+      package_name: "Sultan",
+      price: "Rp 80.000",
+      features: ["100 gambar AI HD", "Revisi 3x", "Format PNG/JPG", "Kirim via Google Drive", "Bonus 15 gambar", "Priority queue", "Custom prompt request"],
+      button_text: "Order 100 Gambar",
+    },
+  ],
+};
+
+export const defaultTestimonials: TestimonialContent = {
+  title: "Mereka Sudah Buktikan",
+  testimonials: [
+    {
+      name: "Rina S.",
+      role: "Seller Shopee",
+      message: "Gila sih, Rp 20rb dapet 20 gambar kualitas HD. Listing saya langsung naik viewsnya 3x lipat!",
+      photo: "",
+      stars: 5,
+    },
+    {
+      name: "Budi A.",
+      role: "Owner Brand Skincare",
+      message: "Biasanya bayar desainer Rp 500K/bulan. Sekarang hemat banget, kualitasnya bahkan lebih konsisten.",
+      photo: "",
+      stars: 5,
+    },
+    {
+      name: "Dian P.",
+      role: "Admin Sosmed",
+      message: "Konten posting harian jadi gampang banget. Tinggal request tema, besoknya udah jadi. TOP!",
+      photo: "",
+      stars: 5,
+    },
+    {
+      name: "Fajar M.",
+      role: "Affiliate Marketer",
+      message: "Saya order paket 100 gambar. Dipake buat konten TikTok dan IG, engagement naik drastis.",
+      photo: "",
+      stars: 5,
+    },
+  ],
+};
+
+export const defaultKeunggulan: KeunggulanItem[] = [
+  { icon: "Shield", title: "100% Original", description: "Setiap gambar dibuat unik untuk kamu, bukan template yang dijual berulang." },
+  { icon: "Zap", title: "Proses Super Cepat", description: "Order hari ini, gambar dikirim dalam 24 jam. Gak pakai nunggu lama." },
+  { icon: "Palette", title: "Request Sesuka Hati", description: "Mau tema apa aja? Fashion, makanan, skincare — tinggal bilang!" },
+  { icon: "HeartHandshake", title: "Garansi Revisi", description: "Tidak puas? Ada garansi revisi sesuai paket yang kamu pilih." },
+  { icon: "Clock", title: "Support Fast Response", description: "Tim kami siap membantu via WhatsApp. Respon cepat, gak di-ghosting." },
+  { icon: "Layers", title: "Resolusi Tinggi", description: "Semua gambar dalam kualitas HD, siap posting tanpa pecah." },
+];
+
+export const defaultWhyContent: WhyContentItem[] = [
+  { title: "Konten = Penjualan", description: "Semakin banyak konten, semakin banyak yang lihat produk kamu. Lebih banyak viewers = lebih banyak pembeli." },
+  { title: "Kompetitor Sudah Duluan", description: "Seller lain sudah pakai ratusan gambar untuk jualan. Kalau kamu masih pakai foto seadanya, kamu kalah start." },
+  { title: "Algoritma Butuh Volume", description: "Platform sosmed memberikan reach lebih besar ke akun yang konsisten posting. Butuh banyak konten setiap hari." },
+  { title: "Testing Konten Lebih Mudah", description: "Dengan banyak gambar, kamu bisa test mana yang paling laku. Data driven, bukan tebak-tebakan." },
+  { title: "Hemat Biaya Desainer", description: "Hire desainer? Minimal Rp 500K per bulan. Di sini cuma Rp 20.000 dapat 20 gambar berkualitas." },
+  { title: "Cocok untuk Semua Niche", description: "Fashion, F&B, skincare, digital product — gambar AI bisa disesuaikan dengan brand apapun." },
+];
+
+export const defaultUrgency: UrgencyContent = {
+  title: "⚠️ PERINGATAN",
+  description: "Promo Rp 1.000/gambar ini TIDAK AKAN bertahan selamanya.",
+  button_text: "🔥 AMANKAN HARGA PROMO SEKARANG!",
+};
+
+export const defaultNavLinks: NavLinkItem[] = [
+  { label: "Home", href: "/" },
+  { label: "Keunggulan", href: "#keunggulan" },
+  { label: "Harga", href: "#pricing" },
+  { label: "Testimoni", href: "#testimoni" },
+];
+
+export const defaultFooter: FooterContent = {
+  brand_name: "BankKonten.id",
+  description: "Penyedia gambar AI termurah dan terpercaya di Indonesia.",
+  phone: "6285646420488",
+  email: "hello@bankkonten.id",
+  address: "Jakarta, Indonesia",
+  copyright: `© ${new Date().getFullYear()} BankKonten.id — All rights reserved.`,
+};
+
+export const defaultWhatsApp: WhatsAppContent = {
+  phone_number: "6285646420488",
+  message: "Halo BankKonten.id, saya mau order gambar AI!",
+};
+
+export const mockCmsData = {
+  hero: defaultHero,
+  pricing: defaultPricing,
+  testimonials: defaultTestimonials,
+  keunggulan: defaultKeunggulan,
+  whyContent: defaultWhyContent,
+  urgency: defaultUrgency,
+  navLinks: defaultNavLinks,
+  footer: defaultFooter,
+  whatsapp: defaultWhatsApp,
+};
