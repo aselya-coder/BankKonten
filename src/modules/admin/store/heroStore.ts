@@ -36,7 +36,7 @@ export const useHeroStore = create<State & Actions>()(
         try {
           const { data, error } = await supabase
             .from('hero_section')
-            .select('id,title,subtitle,button_text,button_link,is_active')
+            .select('id,title,subtitle,button_text,button_link,is_active,metadata')
             .eq('is_active', true)
             .limit(1)
             .maybeSingle();

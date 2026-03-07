@@ -9,6 +9,7 @@ import TestimoniPage from "../pages/TestimoniPage";
 import UrgencyPage from "../pages/UrgencyPage";
 import FooterPage from "../pages/FooterPage";
 import WhatsAppPage from "../pages/WhatsAppPage";
+import NavLinksPage from "../pages/NavLinksPage";
 
 const AdminRoutes = () => (
   <Routes>
@@ -22,6 +23,7 @@ const AdminRoutes = () => (
       <Route path="urgency" element={<UrgencyPage />} />
       <Route path="footer" element={<FooterPage />} />
       <Route path="whatsapp" element={<WhatsAppPage />} />
+      <Route path="nav-links" element={<NavLinksPage />} />
     </Route>
   </Routes>
 );

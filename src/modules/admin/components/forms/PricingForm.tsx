@@ -1,6 +1,6 @@
 import { usePricingStore } from "../../store/pricingStore";
 import { useEffect } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { PricingContent } from "../../types/pricingTypes";
 import AdminInput from "../ui/AdminInput";
 import AdminButton from "../ui/AdminButton";
@@ -28,7 +28,23 @@ export const PricingForm = () => {
         <div key={field.id} className="p-4 border border-gray-300 dark:border-gray-600 rounded-md space-y-2">
           <AdminInput label={`Package Name ${index + 1}`} {...register(`tiers.${index}.package_name`)} />
           <AdminInput label={`Price ${index + 1}`} {...register(`tiers.${index}.price`)} />
-          <AdminTextarea label={`Features ${index + 1}`} {...register(`tiers.${index}.features`)} />
+          <Controller
+            control={control}
+            name={`tiers.${index}.features`}
+            render={({ field }) => (
+              <AdminTextarea
+                label={`Features ${index + 1} (satu per baris)`}
+                value={Array.isArray(field.value) ? field.value.join("\n") : ""}
+                onChange={(e) =>
+                  field.onChange(
+                    e.target.value.split("\n").filter((f) => f.trim() !== "")
+                  )
+                }
+                onBlur={field.onBlur}
+                rows={5}
+              />
+            )}
+          />
           <AdminInput label={`Button Text ${index + 1}`} {...register(`tiers.${index}.button_text`)} />
           <AdminButton type="button" onClick={() => remove(index)}>Remove Tier</AdminButton>
         </div>

@@ -1,6 +1,5 @@
 import { useState, useCallback } from "react";
 import { AdminCard } from "../components/ui/AdminCard";
-import { useContent } from "../hooks/useContent";
 import { useHeroStore } from "../store/heroStore";
 import { usePricingStore } from "../store/pricingStore";
 import { useContentStore } from "../store/contentStore";
@@ -9,13 +8,13 @@ import { mockCmsData } from "../data/mockContent";
 
 const DashboardPage = () => {
   const { pricingContent } = usePricingStore();
-  const { testimonialContent, saveTestimonialsToSupabase, loadTestimonialsFromSupabase } = useTestimonialStore();
+  const { testimonialContent, saveTestimonialsToSupabase } = useTestimonialStore();
 
   const totalPricingPackages = pricingContent?.tiers.length || 0;
   const totalTestimonials = testimonialContent?.testimonials.length || 0;
-  const totalContentSections = 6; // Hardcoded for now
-  const { saveHeroToSupabase, loadHeroFromSupabase } = useHeroStore();
-  const { savePricingToSupabase, loadPricingFromSupabase } = usePricingStore();
+  const totalContentSections = 9; // Hero, Keunggulan, Why Content, Pricing, Testimoni, Urgency, Footer, WhatsApp, Navigasi
+  const { saveHeroToSupabase } = useHeroStore();
+  const { savePricingToSupabase } = usePricingStore();
   const {
     saveKeunggulanToSupabase,
     saveWhyToSupabase,
@@ -23,12 +22,6 @@ const DashboardPage = () => {
     saveFooterToSupabase,
     saveWhatsAppToSupabase,
     saveNavLinksToSupabase,
-    loadKeunggulanFromSupabase,
-    loadWhyFromSupabase,
-    loadUrgencyFromSupabase,
-    loadFooterFromSupabase,
-    loadWhatsAppFromSupabase,
-    loadNavLinksFromSupabase,
   } = useContentStore();
   const [seeding, setSeeding] = useState(false);
   const seedAll = useCallback(async () => {

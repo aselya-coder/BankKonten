@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Home, Image, Star, BarChart, MessageSquare, Settings, Zap, FileText, Wind, Navigation, Milestone, Phone } from "lucide-react";
+import { Home, Image, Star, BarChart, MessageSquare, Zap, Wind, Milestone, Phone, Link } from "lucide-react";
 
 const navLinks = [
   { to: "/admin", icon: Home, label: "Dashboard" },
@@ -11,6 +11,7 @@ const navLinks = [
   { to: "/admin/urgency", icon: Wind, label: "Urgency" },
   { to: "/admin/footer", icon: Milestone, label: "Footer" },
   { to: "/admin/whatsapp", icon: Phone, label: "WhatsApp" },
+  { to: "/admin/nav-links", icon: Link, label: "Navigasi" },
 ];
 
 export const Sidebar = () => {
