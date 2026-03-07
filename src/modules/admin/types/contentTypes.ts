@@ -1,10 +1,29 @@
 export type KeunggulanItem = {
   title: string;
   description: string;
-  icon: string; // Usually a key for an icon component
+  icon: string;
+};
+
+export type KeunggulanContent = {
+  title: string;
+  subtitle: string;
+  items: KeunggulanItem[];
 };
 
 export type WhyContentItem = {
+  title: string;
+  description: string;
+};
+
+export type WhyContent = {
+  title: string;
+  subtitle: string;
+  description: string;
+  items: WhyContentItem[];
+};
+
+export type UrgencyItem = {
+  icon: string;
   title: string;
   description: string;
 };
@@ -13,6 +32,7 @@ export type UrgencyContent = {
   title: string;
   description: string;
   button_text: string;
+  items: UrgencyItem[];
 };
 
 export type NavLinkItem = {

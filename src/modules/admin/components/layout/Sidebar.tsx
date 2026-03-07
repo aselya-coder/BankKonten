@@ -9,7 +9,6 @@ const navLinks = [
   { to: "/admin/pricing", icon: Zap, label: "Pricing" },
   { to: "/admin/testimoni", icon: MessageSquare, label: "Testimoni" },
   { to: "/admin/urgency", icon: Wind, label: "Urgency" },
-  { to: "/admin/navbar", icon: Navigation, label: "Navbar" },
   { to: "/admin/footer", icon: Milestone, label: "Footer" },
   { to: "/admin/whatsapp", icon: Phone, label: "WhatsApp" },
 ];

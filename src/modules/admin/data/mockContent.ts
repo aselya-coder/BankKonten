@@ -1,13 +1,15 @@
 import { HeroContent } from '../types/heroTypes';
 import { PricingContent } from '../types/pricingTypes';
 import { TestimonialContent } from '../types/testimonialTypes';
-import { KeunggulanItem, WhyContentItem, UrgencyContent, NavLinkItem, FooterContent, WhatsAppContent } from '../types/contentTypes';
+import { KeunggulanContent, WhyContent, UrgencyContent, NavLinkItem, FooterContent, WhatsAppContent } from '../types/contentTypes';
 
 export const defaultHero: HeroContent = {
   title: "Gambar AI Cuma Rp 1.000",
   subtitle: "Konten berkualitas tinggi untuk jualan online kamu.",
   button_text: "🔥 ORDER SEKARANG via WhatsApp",
   button_link: "https://wa.me/6281234567890?text=Halo%20BankKonten.id%2C%20saya%20mau%20order%20gambar%20AI!",
+  badge_text: "⚡ PROMO TERBATAS — Stok Bisa Habis Kapan Saja!",
+  bottom_text: "⏳ Harga bisa naik sewaktu-waktu tanpa pemberitahuan",
 };
 
 export const defaultPricing: PricingContent = {
@@ -32,6 +34,7 @@ export const defaultPricing: PricingContent = {
       button_text: "Order 100 Gambar",
     },
   ],
+  promo_text: "Harga promo bisa berakhir kapan saja tanpa pemberitahuan",
 };
 
 export const defaultTestimonials: TestimonialContent = {
@@ -66,30 +69,52 @@ export const defaultTestimonials: TestimonialContent = {
       stars: 5,
     },
   ],
+  target_users: [
+    { emoji: "🛒", label: "Seller Online (Shopee, Tokped, dll)" },
+    { emoji: "🏪", label: "UMKM & Usaha Kecil" },
+    { emoji: "📱", label: "Affiliate Marketer" },
+    { emoji: "🏷️", label: "Owner Brand" },
+    { emoji: "📲", label: "Admin Sosial Media" },
+    { emoji: "🎨", label: "Content Creator" },
+  ],
 };
 
-export const defaultKeunggulan: KeunggulanItem[] = [
-  { icon: "Shield", title: "100% Original", description: "Setiap gambar dibuat unik untuk kamu, bukan template yang dijual berulang." },
-  { icon: "Zap", title: "Proses Super Cepat", description: "Order hari ini, gambar dikirim dalam 24 jam. Gak pakai nunggu lama." },
-  { icon: "Palette", title: "Request Sesuka Hati", description: "Mau tema apa aja? Fashion, makanan, skincare — tinggal bilang!" },
-  { icon: "HeartHandshake", title: "Garansi Revisi", description: "Tidak puas? Ada garansi revisi sesuai paket yang kamu pilih." },
-  { icon: "Clock", title: "Support Fast Response", description: "Tim kami siap membantu via WhatsApp. Respon cepat, gak di-ghosting." },
-  { icon: "Layers", title: "Resolusi Tinggi", description: "Semua gambar dalam kualitas HD, siap posting tanpa pecah." },
-];
+export const defaultKeunggulan: KeunggulanContent = {
+  title: "Keunggulan",
+  subtitle: "Kenapa Harus BankKonten.id?",
+  items: [
+    { icon: "Shield", title: "100% Original", description: "Setiap gambar dibuat unik untuk kamu, bukan template yang dijual berulang." },
+    { icon: "Zap", title: "Proses Super Cepat", description: "Order hari ini, gambar dikirim dalam 24 jam. Gak pakai nunggu lama." },
+    { icon: "Palette", title: "Request Sesuka Hati", description: "Mau tema apa aja? Fashion, makanan, skincare — tinggal bilang!" },
+    { icon: "HeartHandshake", title: "Garansi Revisi", description: "Tidak puas? Ada garansi revisi sesuai paket yang kamu pilih." },
+    { icon: "Clock", title: "Support Fast Response", description: "Tim kami siap membantu via WhatsApp. Respon cepat, gak di-ghosting." },
+    { icon: "Layers", title: "Resolusi Tinggi", description: "Semua gambar dalam kualitas HD, siap posting tanpa pecah." },
+  ]
+};
 
-export const defaultWhyContent: WhyContentItem[] = [
-  { title: "Konten = Penjualan", description: "Semakin banyak konten, semakin banyak yang lihat produk kamu. Lebih banyak viewers = lebih banyak pembeli." },
-  { title: "Kompetitor Sudah Duluan", description: "Seller lain sudah pakai ratusan gambar untuk jualan. Kalau kamu masih pakai foto seadanya, kamu kalah start." },
-  { title: "Algoritma Butuh Volume", description: "Platform sosmed memberikan reach lebih besar ke akun yang konsisten posting. Butuh banyak konten setiap hari." },
-  { title: "Testing Konten Lebih Mudah", description: "Dengan banyak gambar, kamu bisa test mana yang paling laku. Data driven, bukan tebak-tebakan." },
-  { title: "Hemat Biaya Desainer", description: "Hire desainer? Minimal Rp 500K per bulan. Di sini cuma Rp 20.000 dapat 20 gambar berkualitas." },
-  { title: "Cocok untuk Semua Niche", description: "Fashion, F&B, skincare, digital product — gambar AI bisa disesuaikan dengan brand apapun." },
-];
+export const defaultWhyContent: WhyContent = {
+  title: "Fakta Pahit",
+  subtitle: "Kenapa Kamu BUTUH Banyak Konten?",
+  description: "Tanpa konten yang cukup, bisnis online kamu akan tenggelam di antara jutaan kompetitor.",
+  items: [
+    { title: "Konten = Penjualan", description: "Semakin banyak konten, semakin banyak yang lihat produk kamu. Lebih banyak viewers = lebih banyak pembeli." },
+    { title: "Kompetitor Sudah Duluan", description: "Seller lain sudah pakai ratusan gambar untuk jualan. Kalau kamu masih pakai foto seadanya, kamu kalah start." },
+    { title: "Algoritma Butuh Volume", description: "Platform sosmed memberikan reach lebih besar ke akun yang konsisten posting. Butuh banyak konten setiap hari." },
+    { title: "Testing Konten Lebih Mudah", description: "Dengan banyak gambar, kamu bisa test mana yang paling laku. Data driven, bukan tebak-tebakan." },
+    { title: "Hemat Biaya Desainer", description: "Hire desainer? Minimal Rp 500K per bulan. Di sini cuma Rp 20.000 dapat 20 gambar berkualitas." },
+    { title: "Cocok untuk Semua Niche", description: "Fashion, F&B, skincare, digital product — gambar AI bisa disesuaikan dengan brand apapun." },
+  ]
+};
 
 export const defaultUrgency: UrgencyContent = {
   title: "⚠️ PERINGATAN",
   description: "Promo Rp 1.000/gambar ini TIDAK AKAN bertahan selamanya.",
   button_text: "🔥 AMANKAN HARGA PROMO SEKARANG!",
+  items: [
+    { icon: "Clock", title: "Kuota Terbatas", description: "Hanya untuk 100 order pertama" },
+    { icon: "TrendingDown", title: "Harga Akan Naik", description: "Jadi Rp 3.000/gambar setelah promo" },
+    { icon: "XCircle", title: "Tanpa Pemberitahuan", description: "Promo bisa ditutup kapan saja" },
+  ]
 };
 
 export const defaultNavLinks: NavLinkItem[] = [

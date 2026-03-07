@@ -1,8 +1,35 @@
 import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
 import { Sidebar } from "./Sidebar";
 import { Header } from "./Header";
+import { useHeroStore } from "../../store/heroStore";
+import { usePricingStore } from "../../store/pricingStore";
+import { useContentStore } from "../../store/contentStore";
+import { useTestimonialStore } from "../../store/testimonialStore";
 
 const AdminLayout = () => {
+  const { loadHeroFromSupabase } = useHeroStore();
+  const { loadPricingFromSupabase } = usePricingStore();
+  const { loadTestimonialsFromSupabase } = useTestimonialStore();
+  const {
+    loadKeunggulanFromSupabase,
+    loadWhyFromSupabase,
+    loadUrgencyFromSupabase,
+    loadFooterFromSupabase,
+    loadWhatsAppFromSupabase,
+    loadNavLinksFromSupabase,
+  } = useContentStore();
+  useEffect(() => {
+    loadHeroFromSupabase();
+    loadPricingFromSupabase();
+    loadTestimonialsFromSupabase();
+    loadKeunggulanFromSupabase();
+    loadWhyFromSupabase();
+    loadUrgencyFromSupabase();
+    loadFooterFromSupabase();
+    loadWhatsAppFromSupabase();
+    loadNavLinksFromSupabase();
+  }, []);
   return (
     <div className="flex h-screen bg-gray-100">
       <Sidebar />

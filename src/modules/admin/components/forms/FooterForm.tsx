@@ -1,16 +1,21 @@
 import { useContentStore } from "../../store/contentStore";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FooterContent } from "../../types/contentTypes";
 import AdminInput from "../ui/AdminInput";
 import AdminButton from "../ui/AdminButton";
 
 export const FooterForm = () => {
-  const { footer, updateFooter } = useContentStore();
-  const { register, handleSubmit } = useForm<FooterContent>({ defaultValues: footer });
+  const { footer, updateFooter, saveFooterToSupabase } = useContentStore();
+  const { register, handleSubmit, reset } = useForm<FooterContent>({ defaultValues: footer });
+  useEffect(() => {
+    reset(footer);
+  }, [footer, reset]);
 
-  const onSubmit = (data: FooterContent) => {
+  const onSubmit = async (data: FooterContent) => {
     updateFooter(data);
-    alert("Footer content updated!");
+    await saveFooterToSupabase();
+    alert("Footer content saved!");
   };
 
   return (

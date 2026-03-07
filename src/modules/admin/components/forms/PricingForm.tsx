@@ -1,4 +1,5 @@
 import { usePricingStore } from "../../store/pricingStore";
+import { useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PricingContent } from "../../types/pricingTypes";
 import AdminInput from "../ui/AdminInput";
@@ -6,18 +7,23 @@ import AdminButton from "../ui/AdminButton";
 import { AdminTextarea } from "../ui/AdminTextarea";
 
 export const PricingForm = () => {
-  const { pricingContent, updatePricingContent } = usePricingStore();
-  const { control, register, handleSubmit } = useForm<PricingContent>({ defaultValues: pricingContent });
+  const { pricingContent, updatePricingContent, savePricingToSupabase } = usePricingStore();
+  const { control, register, handleSubmit, reset } = useForm<PricingContent>({ defaultValues: pricingContent });
   const { fields, append, remove } = useFieldArray({ control, name: "tiers" });
+  useEffect(() => {
+    reset(pricingContent);
+  }, [pricingContent, reset]);
 
-  const onSubmit = (data: PricingContent) => {
+  const onSubmit = async (data: PricingContent) => {
     updatePricingContent(data);
-    alert("Pricing content updated!");
+    await savePricingToSupabase();
+    alert("Pricing content saved!");
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <AdminInput label="Section Title" {...register("title")} />
+      <AdminInput label="Promo Footer Text" {...register("promo_text")} />
       {fields.map((field, index) => (
         <div key={field.id} className="p-4 border border-gray-300 dark:border-gray-600 rounded-md space-y-2">
           <AdminInput label={`Package Name ${index + 1}`} {...register(`tiers.${index}.package_name`)} />

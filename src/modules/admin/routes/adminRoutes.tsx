@@ -7,7 +7,6 @@ import WhyContentPage from "../pages/WhyContentPage";
 import PricingPage from "../pages/PricingPage";
 import TestimoniPage from "../pages/TestimoniPage";
 import UrgencyPage from "../pages/UrgencyPage";
-import NavbarPage from "../pages/NavbarPage";
 import FooterPage from "../pages/FooterPage";
 import WhatsAppPage from "../pages/WhatsAppPage";
 
@@ -21,7 +20,6 @@ const AdminRoutes = () => (
       <Route path="pricing" element={<PricingPage />} />
       <Route path="testimoni" element={<TestimoniPage />} />
       <Route path="urgency" element={<UrgencyPage />} />
-      <Route path="navbar" element={<NavbarPage />} />
       <Route path="footer" element={<FooterPage />} />
       <Route path="whatsapp" element={<WhatsAppPage />} />
     </Route>

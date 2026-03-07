@@ -8,4 +8,5 @@ export type PricingTier = {
 export type PricingContent = {
   title: string;
   tiers: PricingTier[];
+  promo_text: string;
 };

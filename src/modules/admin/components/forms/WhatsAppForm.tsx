@@ -1,16 +1,21 @@
 import { useContentStore } from "../../store/contentStore";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { WhatsAppContent } from "../../types/contentTypes";
 import AdminInput from "../ui/AdminInput";
 import AdminButton from "../ui/AdminButton";
 
 export const WhatsAppForm = () => {
-  const { whatsapp, updateWhatsApp } = useContentStore();
-  const { register, handleSubmit } = useForm<WhatsAppContent>({ defaultValues: whatsapp });
+  const { whatsapp, updateWhatsApp, saveWhatsAppToSupabase } = useContentStore();
+  const { register, handleSubmit, reset } = useForm<WhatsAppContent>({ defaultValues: whatsapp });
+  useEffect(() => {
+    reset(whatsapp);
+  }, [whatsapp, reset]);
 
-  const onSubmit = (data: WhatsAppContent) => {
+  const onSubmit = async (data: WhatsAppContent) => {
     updateWhatsApp(data);
-    alert("WhatsApp content updated!");
+    await saveWhatsAppToSupabase();
+    alert("WhatsApp content saved!");
   };
 
   return (

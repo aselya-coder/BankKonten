@@ -1,7 +1,10 @@
 import WhatsAppButton from "./WhatsAppButton";
 import { Zap, Clock, AlertTriangle } from "lucide-react";
+import { useHeroStore } from "@/modules/admin/store/heroStore";
 
 const HeroSection = () => {
+  const { heroContent } = useHeroStore();
+  const title = heroContent?.title || "";
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background effects */}
@@ -13,22 +16,18 @@ const HeroSection = () => {
         {/* Urgency badge */}
         <div className="inline-flex items-center gap-2 bg-urgent/20 border border-urgent/40 rounded-full px-4 py-2 mb-6 animate-pulse-glow">
           <AlertTriangle className="w-4 h-4 text-urgent" />
-          <span className="text-sm font-bold text-urgent">⚡ PROMO TERBATAS — Stok Bisa Habis Kapan Saja!</span>
+          <span className="text-sm font-bold text-urgent">{heroContent?.badge_text || ""}</span>
         </div>
 
         {/* Main headline */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-4">
-          Gambar AI Cuma{" "}
+          {title.split("Rp")[0] || title}{" "}
           <span className="text-gradient text-6xl md:text-8xl lg:text-9xl block mt-2">
-            Rp 1.000
+            {title.includes("Rp") ? `Rp${title.split("Rp")[1]}` : ""}
           </span>
         </h1>
         
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-4">
-          Konten berkualitas tinggi untuk jualan online kamu.
-          <br />
-          <span className="text-foreground font-semibold">Minimal order 20 gambar = Rp 20.000 aja!</span>
-        </p>
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-4">{heroContent?.subtitle || ""}</p>
 
         {/* Trust badges */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -42,10 +41,10 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <WhatsAppButton variant="hero" text="🔥 ORDER SEKARANG via WhatsApp" />
+        <WhatsAppButton variant="hero" text={heroContent?.button_text || ""} href={heroContent?.button_link || ""} />
         
         <p className="mt-4 text-sm text-muted-foreground animate-countdown">
-          ⏳ Harga bisa naik sewaktu-waktu tanpa pemberitahuan
+          {heroContent?.bottom_text || ""}
         </p>
       </div>
     </section>
