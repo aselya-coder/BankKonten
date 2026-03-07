@@ -7,12 +7,14 @@ import AdminButton from "../ui/AdminButton";
 
 export const UrgencyForm = () => {
   const { urgency, updateUrgency, saveUrgencyToSupabase } = useContentStore();
-  const { control, register, handleSubmit, reset } = useForm<UrgencyContent>({ defaultValues: urgency });
+  const { control, register, handleSubmit, reset, formState } = useForm<UrgencyContent>({ defaultValues: urgency });
   const { fields, append, remove } = useFieldArray({ control, name: "items" });
 
   useEffect(() => {
-    reset(urgency);
-  }, [urgency, reset]);
+    if (!formState.isDirty) {
+      reset(urgency);
+    }
+  }, [urgency, reset, formState.isDirty]);
 
   const onSubmit = async (data: UrgencyContent) => {
     updateUrgency(data);

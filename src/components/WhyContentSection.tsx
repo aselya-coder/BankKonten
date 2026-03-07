@@ -1,3 +1,4 @@
+import * as Icons from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
 import { useContentStore } from "@/modules/admin/store/contentStore";
 
@@ -11,26 +12,34 @@ const WhyContentSection = () => {
         <div className="text-center mb-14">
           <span className="text-primary font-bold text-sm uppercase tracking-widest">{whyContent.title}</span>
           <h2 className="text-3xl md:text-5xl font-black mt-2 mb-4">
-            {whyContent.subtitle.split("BUTUH")[0]}
+            {(whyContent.subtitle || "").split("BUTUH")[0]}
             <span className="text-gradient">BUTUH Banyak Konten?</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            {whyContent.description.split("tenggelam")[0]}
+            {(whyContent.description || "").split("tenggelam")[0]}
             <span className="text-urgent font-bold">tenggelam</span> 
-            {whyContent.description.split("tenggelam")[1]}
+            {(whyContent.description || "").split("tenggelam")[1] || ""}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {(whyContent.items || []).map((r, i) => (
-            <div
-              key={i}
-              className="bg-card border border-border rounded-xl p-6 card-shadow hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
-            >
-              <h3 className="text-lg font-bold font-display mb-2">{r.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{r.description}</p>
-            </div>
-          ))}
+          {(whyContent.items || []).map((r, i) => {
+            type IconKey = keyof typeof Icons;
+            const iconName = (whyContent.global_icon || r.icon) as IconKey;
+            const IconComp = (Icons[iconName] || Icons.CircleDot) as React.ElementType;
+            return (
+              <div
+                key={i}
+                className="bg-card border border-border rounded-xl p-6 card-shadow hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                  <IconComp className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold font-display mb-2">{r.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{r.description}</p>
+              </div>
+            );
+          })}
         </div>
 
         <div className="text-center mt-12">

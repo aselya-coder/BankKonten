@@ -7,11 +7,13 @@ import AdminButton from "../ui/AdminButton";
 
 export const WhyContentForm = () => {
   const { whyContent, updateWhyContent, saveWhyToSupabase } = useContentStore();
-  const { control, register, handleSubmit, reset } = useForm<WhyContent>({ defaultValues: whyContent });
+  const { control, register, handleSubmit, reset, formState } = useForm<WhyContent>({ defaultValues: whyContent });
   const { fields, append, remove } = useFieldArray({ control, name: "items" });
   useEffect(() => {
-    reset(whyContent);
-  }, [whyContent, reset]);
+    if (!formState.isDirty) {
+      reset(whyContent);
+    }
+  }, [whyContent, reset, formState.isDirty]);
 
   const onSubmit = async (data: WhyContent) => {
     updateWhyContent(data);
@@ -24,14 +26,16 @@ export const WhyContentForm = () => {
       <AdminInput label="Section Badge" {...register("title")} />
       <AdminInput label="Section Title" {...register("subtitle")} />
       <AdminInput label="Section Description" {...register("description")} />
+      <AdminInput label="Global Icon (opsional)" placeholder="mis: CircleDot" {...register("global_icon")} />
       {fields.map((field, index) => (
         <div key={field.id} className="p-4 border border-gray-300 dark:border-gray-600 rounded-md space-y-2">
+          <AdminInput label={`Item Icon ${index + 1}`} placeholder="mis: TrendingUp" {...register(`items.${index}.icon`)} />
           <AdminInput label={`Item Title ${index + 1}`} {...register(`items.${index}.title`)} />
           <AdminInput label={`Item Description ${index + 1}`} {...register(`items.${index}.description`)} />
           <AdminButton type="button" onClick={() => remove(index)}>Remove Item</AdminButton>
         </div>
       ))}
-      <AdminButton type="button" onClick={() => append({ title: "", description: "" })}>Add Item</AdminButton>
+      <AdminButton type="button" onClick={() => append({ icon: "CircleDot", title: "", description: "" })}>Add Item</AdminButton>
       <AdminButton type="submit">Save Changes</AdminButton>
     </form>
   );

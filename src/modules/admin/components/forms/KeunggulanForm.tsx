@@ -7,11 +7,13 @@ import AdminButton from "../ui/AdminButton";
 
 const KeunggulanForm = () => {
   const { keunggulan, updateKeunggulan, saveKeunggulanToSupabase } = useContentStore();
-  const { control, register, handleSubmit, reset } = useForm<KeunggulanContent>({ defaultValues: keunggulan });
+  const { control, register, handleSubmit, reset, formState } = useForm<KeunggulanContent>({ defaultValues: keunggulan });
   const { fields, append, remove } = useFieldArray({ control, name: "items" });
   useEffect(() => {
-    reset(keunggulan);
-  }, [keunggulan, reset]);
+    if (!formState.isDirty) {
+      reset(keunggulan);
+    }
+  }, [keunggulan, reset, formState.isDirty]);
 
   const onSubmit = async (data: KeunggulanContent) => {
     updateKeunggulan(data);

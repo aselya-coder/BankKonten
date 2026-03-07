@@ -96,13 +96,14 @@ export const defaultWhyContent: WhyContent = {
   title: "Fakta Pahit",
   subtitle: "Kenapa Kamu BUTUH Banyak Konten?",
   description: "Tanpa konten yang cukup, bisnis online kamu akan tenggelam di antara jutaan kompetitor.",
+  global_icon: "",
   items: [
-    { title: "Konten = Penjualan", description: "Semakin banyak konten, semakin banyak yang lihat produk kamu. Lebih banyak viewers = lebih banyak pembeli." },
-    { title: "Kompetitor Sudah Duluan", description: "Seller lain sudah pakai ratusan gambar untuk jualan. Kalau kamu masih pakai foto seadanya, kamu kalah start." },
-    { title: "Algoritma Butuh Volume", description: "Platform sosmed memberikan reach lebih besar ke akun yang konsisten posting. Butuh banyak konten setiap hari." },
-    { title: "Testing Konten Lebih Mudah", description: "Dengan banyak gambar, kamu bisa test mana yang paling laku. Data driven, bukan tebak-tebakan." },
-    { title: "Hemat Biaya Desainer", description: "Hire desainer? Minimal Rp 500K per bulan. Di sini cuma Rp 20.000 dapat 20 gambar berkualitas." },
-    { title: "Cocok untuk Semua Niche", description: "Fashion, F&B, skincare, digital product — gambar AI bisa disesuaikan dengan brand apapun." },
+    { icon: "TrendingUp", title: "Konten = Penjualan", description: "Semakin banyak konten, semakin banyak yang lihat produk kamu. Lebih banyak viewers = lebih banyak pembeli." },
+    { icon: "ShoppingCart", title: "Kompetitor Sudah Duluan", description: "Seller lain sudah pakai ratusan gambar untuk jualan. Kalau kamu masih pakai foto seadanya, kamu kalah start." },
+    { icon: "Users", title: "Algoritma Butuh Volume", description: "Platform sosmed memberikan reach lebih besar ke akun yang konsisten posting. Butuh banyak konten setiap hari." },
+    { icon: "BarChart3", title: "Testing Konten Lebih Mudah", description: "Dengan banyak gambar, kamu bisa test mana yang paling laku. Data driven, bukan tebak-tebakan." },
+    { icon: "Images", title: "Hemat Biaya Desainer", description: "Hire desainer? Minimal Rp 500K per bulan. Di sini cuma Rp 20.000 dapat 20 gambar berkualitas." },
+    { icon: "Target", title: "Cocok untuk Semua Niche", description: "Fashion, F&B, skincare, digital product — gambar AI bisa disesuaikan dengan brand apapun." },
   ]
 };
 

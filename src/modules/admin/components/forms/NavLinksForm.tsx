@@ -12,15 +12,17 @@ type NavLinksFormData = {
 export const NavLinksForm = () => {
   const { navLinks, updateNavLinks, saveNavLinksToSupabase } = useContentStore();
 
-  const { control, register, handleSubmit, reset } = useForm<NavLinksFormData>({
+  const { control, register, handleSubmit, reset, formState } = useForm<NavLinksFormData>({
     defaultValues: { navLinks },
   });
 
   const { fields, append, remove, move } = useFieldArray({ control, name: "navLinks" });
 
   useEffect(() => {
-    reset({ navLinks });
-  }, [navLinks, reset]);
+    if (!formState.isDirty) {
+      reset({ navLinks });
+    }
+  }, [navLinks, reset, formState.isDirty]);
 
   const onSubmit = async (data: NavLinksFormData) => {
     updateNavLinks(data.navLinks);

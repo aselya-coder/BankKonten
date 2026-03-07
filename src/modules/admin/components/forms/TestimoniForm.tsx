@@ -9,13 +9,15 @@ import AdminImagePicker from "../ui/AdminImagePicker";
 
 export const TestimoniForm = () => {
   const { testimonialContent, updateTestimonialContent, saveTestimonialsToSupabase } = useTestimonialStore();
-  const { control, register, handleSubmit, setValue, watch, reset } = useForm<TestimonialContent>({ defaultValues: testimonialContent });
+  const { control, register, handleSubmit, setValue, watch, reset, formState } = useForm<TestimonialContent>({ defaultValues: testimonialContent });
   const { fields, append, remove } = useFieldArray({ control, name: "testimonials" });
   const { fields: targetFields, append: appendTarget, remove: removeTarget } = useFieldArray({ control, name: "target_users" });
 
   useEffect(() => {
-    reset(testimonialContent);
-  }, [testimonialContent, reset]);
+    if (!formState.isDirty) {
+      reset(testimonialContent);
+    }
+  }, [testimonialContent, reset, formState.isDirty]);
 
   const onSubmit = async (data: TestimonialContent) => {
     updateTestimonialContent(data);

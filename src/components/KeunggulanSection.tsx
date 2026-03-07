@@ -12,7 +12,7 @@ const KeunggulanSection = () => {
         <div className="text-center mb-14">
           <span className="text-primary font-bold text-sm uppercase tracking-widest">{keunggulan.title}</span>
           <h2 className="text-3xl md:text-5xl font-black mt-2 mb-4">
-            {keunggulan.subtitle.split("BankKonten.id?")[0]}
+            {(keunggulan.subtitle || "").split("BankKonten.id?")[0]}
             <span className="text-gradient">BankKonten.id?</span>
           </h2>
         </div>

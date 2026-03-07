@@ -9,6 +9,7 @@ import AdminRoutes from "./modules/admin/routes/adminRoutes";
 import { AuthProvider } from "./modules/auth/AuthProvider";
 import ProtectedAdminRoute from "./modules/auth/ProtectedAdminRoute";
 import AdminLoginPage from "./modules/auth/pages/AdminLoginPage";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
@@ -17,24 +18,25 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <AuthProvider>
-        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/admin/login" element={<AdminLoginPage />} />
-            <Route
-              path="/admin/*"
-              element={
-                <ProtectedAdminRoute>
-                  <AdminRoutes />
-                </ProtectedAdminRoute>
-              }
-            />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
+      <ErrorBoundary>
+        <AuthProvider>
+          <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/admin/login" element={<AdminLoginPage />} />
+              <Route
+                path="/admin/*"
+                element={
+                  <ProtectedAdminRoute>
+                    <AdminRoutes />
+                  </ProtectedAdminRoute>
+                }
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+      </ErrorBoundary>
     </TooltipProvider>
   </QueryClientProvider>
 );

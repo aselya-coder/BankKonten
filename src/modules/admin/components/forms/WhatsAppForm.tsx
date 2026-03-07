@@ -7,10 +7,12 @@ import AdminButton from "../ui/AdminButton";
 
 export const WhatsAppForm = () => {
   const { whatsapp, updateWhatsApp, saveWhatsAppToSupabase } = useContentStore();
-  const { register, handleSubmit, reset } = useForm<WhatsAppContent>({ defaultValues: whatsapp });
+  const { register, handleSubmit, reset, formState } = useForm<WhatsAppContent>({ defaultValues: whatsapp });
   useEffect(() => {
-    reset(whatsapp);
-  }, [whatsapp, reset]);
+    if (!formState.isDirty) {
+      reset(whatsapp);
+    }
+  }, [whatsapp, reset, formState.isDirty]);
 
   const onSubmit = async (data: WhatsAppContent) => {
     updateWhatsApp(data);

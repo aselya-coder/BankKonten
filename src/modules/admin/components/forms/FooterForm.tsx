@@ -7,10 +7,12 @@ import AdminButton from "../ui/AdminButton";
 
 export const FooterForm = () => {
   const { footer, updateFooter, saveFooterToSupabase } = useContentStore();
-  const { register, handleSubmit, reset } = useForm<FooterContent>({ defaultValues: footer });
+  const { register, handleSubmit, reset, formState } = useForm<FooterContent>({ defaultValues: footer });
   useEffect(() => {
-    reset(footer);
-  }, [footer, reset]);
+    if (!formState.isDirty) {
+      reset(footer);
+    }
+  }, [footer, reset, formState.isDirty]);
 
   const onSubmit = async (data: FooterContent) => {
     updateFooter(data);

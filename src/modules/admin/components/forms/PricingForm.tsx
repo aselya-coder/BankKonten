@@ -8,11 +8,13 @@ import { AdminTextarea } from "../ui/AdminTextarea";
 
 export const PricingForm = () => {
   const { pricingContent, updatePricingContent, savePricingToSupabase } = usePricingStore();
-  const { control, register, handleSubmit, reset } = useForm<PricingContent>({ defaultValues: pricingContent });
+  const { control, register, handleSubmit, reset, formState } = useForm<PricingContent>({ defaultValues: pricingContent });
   const { fields, append, remove } = useFieldArray({ control, name: "tiers" });
   useEffect(() => {
-    reset(pricingContent);
-  }, [pricingContent, reset]);
+    if (!formState.isDirty) {
+      reset(pricingContent);
+    }
+  }, [pricingContent, reset, formState.isDirty]);
 
   const onSubmit = async (data: PricingContent) => {
     updatePricingContent(data);

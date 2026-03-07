@@ -13,12 +13,14 @@ export type KeunggulanContent = {
 export type WhyContentItem = {
   title: string;
   description: string;
+  icon: string;
 };
 
 export type WhyContent = {
   title: string;
   subtitle: string;
   description: string;
+  global_icon?: string;
   items: WhyContentItem[];
 };
 

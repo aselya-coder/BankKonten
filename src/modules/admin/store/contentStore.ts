@@ -125,15 +125,22 @@ export const useContentStore = create<ContentState & ContentActions>()(
           if (error) throw error;
 
           if (Array.isArray(data) && data.length > 0) {
-            set({ whyContent: {
-              title: data[0].metadata?.title || mockCmsData.whyContent.title,
-              subtitle: data[0].metadata?.subtitle || mockCmsData.whyContent.subtitle,
-              description: data[0].metadata?.description || mockCmsData.whyContent.description,
-              items: data.map((d) => ({ 
-                title: d.title ?? '', 
-                description: d.description ?? '' 
-              }))
-            }});
+            const giRaw = `${data[0].metadata?.global_icon ?? ""}`.trim();
+            const globalIcon = giRaw === "CircleDot" ? "" : giRaw;
+            const defaultIcons = ["TrendingUp","ShoppingCart","Users","BarChart3","Images","Target"] as const;
+            set({
+              whyContent: {
+                title: data[0].metadata?.title || mockCmsData.whyContent.title,
+                subtitle: data[0].metadata?.subtitle || mockCmsData.whyContent.subtitle,
+                description: data[0].metadata?.description || mockCmsData.whyContent.description,
+                global_icon: globalIcon || "",
+                items: data.map((d, idx) => ({
+                  title: d.title ?? "",
+                  description: d.description ?? "",
+                  icon: (d.metadata?.icon && String(d.metadata.icon).trim()) || defaultIcons[idx % defaultIcons.length],
+                })),
+              },
+            });
           } else {
             set({ whyContent: mockCmsData.whyContent });
           }
@@ -153,7 +160,7 @@ export const useContentStore = create<ContentState & ContentActions>()(
               description: it.description,
               is_active: true,
               order_number: idx,
-              metadata: { title: content.title, subtitle: content.subtitle, description: content.description }
+              metadata: { title: content.title, subtitle: content.subtitle, description: content.description, global_icon: (content.global_icon || ""), icon: it.icon }
             })),
           );
           if (error) throw error;
@@ -360,6 +367,43 @@ export const useContentStore = create<ContentState & ContentActions>()(
         }
       },
     }),
-    { name: 'bk_content_v2' },
+    { name: 'bk_content_v3' },
   ),
 );
+
+// Cross-tab/state sync to reflect Admin edits instantly across tabs (data-only payload)
+const CONTENT_CLIENT_ID = Math.random().toString(36).slice(2);
+const contentChannel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('bk_content_sync_v3') : null;
+if (contentChannel) {
+  useContentStore.subscribe((s) => {
+    try {
+      const payload = {
+        keunggulan: s.keunggulan,
+        whyContent: s.whyContent,
+        urgency: s.urgency,
+        navLinks: s.navLinks,
+        footer: s.footer,
+        whatsapp: s.whatsapp,
+      } satisfies Partial<ContentState>;
+      contentChannel.postMessage({ t: 'content', p: payload, f: CONTENT_CLIENT_ID });
+    } catch {
+      // ignore postMessage failures
+    }
+  });
+  contentChannel.onmessage = (e) => {
+    const msg = e.data as
+      | {
+          t?: string;
+          p?: Partial<ContentState>;
+          f?: string;
+        }
+      | undefined;
+    if (!msg || msg.f === CONTENT_CLIENT_ID) return;
+    if (msg.t === 'content' && msg.p) {
+      useContentStore.setState((prev) => ({
+        ...prev,
+        ...msg.p,
+      }));
+    }
+  };
+}

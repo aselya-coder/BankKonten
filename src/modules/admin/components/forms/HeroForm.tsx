@@ -7,10 +7,12 @@ import AdminButton from "../ui/AdminButton";
 
 export const HeroForm = () => {
   const { heroContent, updateHeroContent, saveHeroToSupabase } = useHeroStore();
-  const { register, handleSubmit, reset } = useForm<HeroContent>({ defaultValues: heroContent });
+  const { register, handleSubmit, reset, formState } = useForm<HeroContent>({ defaultValues: heroContent });
   useEffect(() => {
-    reset(heroContent);
-  }, [heroContent, reset]);
+    if (!formState.isDirty) {
+      reset(heroContent);
+    }
+  }, [heroContent, reset, formState.isDirty]);
 
   const onSubmit = async (data: HeroContent) => {
     updateHeroContent(data);

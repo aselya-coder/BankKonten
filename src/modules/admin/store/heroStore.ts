@@ -27,9 +27,12 @@ export const useHeroStore = create<State & Actions>()(
 
         // Skip if not configured
         if (!isSupabaseConfigured) {
-          if (!get().heroContent?.title) {
-            set({ heroContent: mockCmsData.hero });
-          }
+          const current = get().heroContent as Partial<HeroContent> | undefined;
+          const merged: HeroContent = {
+            ...mockCmsData.hero,
+            ...(current ?? {}),
+          };
+          set({ heroContent: merged });
           return;
         }
 
@@ -44,14 +47,15 @@ export const useHeroStore = create<State & Actions>()(
           if (error) throw error;
 
           if (data) {
-            set({ heroContent: {
+            const merged: HeroContent = {
               title: data.title || mockCmsData.hero.title,
               subtitle: data.subtitle || mockCmsData.hero.subtitle,
               button_text: data.button_text || mockCmsData.hero.button_text,
               button_link: data.button_link || mockCmsData.hero.button_link,
               badge_text: data.metadata?.badge_text || mockCmsData.hero.badge_text,
               bottom_text: data.metadata?.bottom_text || mockCmsData.hero.bottom_text,
-            }});
+            };
+            set({ heroContent: merged });
           } else {
             set({ heroContent: mockCmsData.hero });
           }

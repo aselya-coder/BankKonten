@@ -24,6 +24,16 @@ const DashboardPage = () => {
     saveNavLinksToSupabase,
   } = useContentStore();
   const [seeding, setSeeding] = useState(false);
+  const resetLocalCMS = useCallback(() => {
+    try {
+      const keys = ["bk_content_v3", "bk_hero_v2", "bk_pricing_v2", "bk_testimonials_v2"];
+      keys.forEach((k) => localStorage.removeItem(k));
+      alert("Local CMS cache dibersihkan. Halaman akan dimuat ulang.");
+      window.location.reload();
+    } catch {
+      /* ignore */
+    }
+  }, []);
   const seedAll = useCallback(async () => {
     try {
       setSeeding(true);
@@ -80,13 +90,19 @@ const DashboardPage = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
-      <div className="mb-6">
+      <div className="mb-6 flex items-center gap-3 flex-wrap">
         <button
           onClick={seedAll}
           disabled={seeding}
           className="px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50"
         >
           {seeding ? "Menyimpan ke Supabase..." : "Seed Semua Konten ke Supabase"}
+        </button>
+        <button
+          onClick={resetLocalCMS}
+          className="px-4 py-2 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200"
+        >
+          Reset CMS Lokal (Bersihkan Cache)
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
