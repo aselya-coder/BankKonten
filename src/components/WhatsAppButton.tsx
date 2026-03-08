@@ -1,6 +1,14 @@
 import { MessageCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+import { fetchContent } from "@/lib/cms";
+import { defaultWhatsApp } from "@/modules/admin/data/mockContent";
+import type { WhatsAppContent } from "@/modules/admin/types/contenttypes";
 
-const WA_LINK = "https://wa.me/6281234567890?text=Halo%20BankKonten.id%2C%20saya%20mau%20order%20gambar%20AI!";
+const buildLink = (phone: string, message: string) => {
+  const p = phone.replace(/[^\d]/g, "");
+  const m = encodeURIComponent(message);
+  return `https://wa.me/${p}?text=${m}`;
+};
 
 interface WhatsAppButtonProps {
   text?: string;
@@ -9,6 +17,14 @@ interface WhatsAppButtonProps {
 }
 
 const WhatsAppButton = ({ text = "Order via WhatsApp", className = "", variant = "default" }: WhatsAppButtonProps) => {
+  const [link, setLink] = useState(buildLink(defaultWhatsApp.phone_number, defaultWhatsApp.message));
+  useEffect(() => {
+    const run = async () => {
+      const settings = await fetchContent<WhatsAppContent>("whatsapp_settings", { ...defaultWhatsApp, show_button: true });
+      setLink(buildLink(settings.phone_number, settings.message));
+    };
+    run();
+  }, []);
   const baseStyles = "inline-flex items-center gap-2 font-display font-bold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95";
   
   const variants = {
@@ -19,7 +35,7 @@ const WhatsAppButton = ({ text = "Order via WhatsApp", className = "", variant =
 
   return (
     <a
-      href={WA_LINK}
+      href={link}
       target="_blank"
       rel="noopener noreferrer"
       className={`${baseStyles} ${variants[variant]} ${className}`}
