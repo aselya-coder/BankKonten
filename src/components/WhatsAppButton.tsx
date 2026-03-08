@@ -1,15 +1,14 @@
 import { MessageCircle } from "lucide-react";
 
-const WA_LINK = "https://wa.me/6285646420488?text=Halo%20BankKonten.id%2C%20saya%20mau%20order%20gambar%20AI!";
+const WA_LINK = "https://wa.me/6281234567890?text=Halo%20BankKonten.id%2C%20saya%20mau%20order%20gambar%20AI!";
 
 interface WhatsAppButtonProps {
   text?: string;
   className?: string;
   variant?: "default" | "urgent" | "hero";
-  href?: string;
 }
 
-const WhatsAppButton = ({ text = "Order via WhatsApp", className = "", variant = "default", href }: WhatsAppButtonProps) => {
+const WhatsAppButton = ({ text = "Order via WhatsApp", className = "", variant = "default" }: WhatsAppButtonProps) => {
   const baseStyles = "inline-flex items-center gap-2 font-display font-bold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95";
   
   const variants = {
@@ -20,7 +19,7 @@ const WhatsAppButton = ({ text = "Order via WhatsApp", className = "", variant =
 
   return (
     <a
-      href={href ?? WA_LINK}
+      href={WA_LINK}
       target="_blank"
       rel="noopener noreferrer"
       className={`${baseStyles} ${variants[variant]} ${className}`}

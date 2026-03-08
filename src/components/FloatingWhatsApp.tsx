@@ -1,12 +1,11 @@
 import { MessageCircle } from "lucide-react";
-import { useContentStore } from "@/modules/admin/store/contentStore";
+
+const WA_LINK = "https://wa.me/6281234567890?text=Halo%20BankKonten.id%2C%20saya%20mau%20order%20gambar%20AI!";
 
 const FloatingWhatsApp = () => {
-  const { whatsapp } = useContentStore();
-  const href = `https://wa.me/${whatsapp.phone_number}?text=${encodeURIComponent(whatsapp.message)}`;
   return (
     <a
-      href={href}
+      href={WA_LINK}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 bg-success rounded-full p-4 cta-shadow animate-bounce-slow hover:scale-110 transition-transform duration-300"
