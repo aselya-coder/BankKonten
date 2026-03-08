@@ -1,11 +1,11 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-type MetaEnv = { env?: Record<string, string | undefined> };
-const meta = import.meta as unknown as MetaEnv;
-const supabaseUrl = meta.env?.VITE_SUPABASE_URL || "";
-const supabaseAnonKey = meta.env?.VITE_SUPABASE_ANON_KEY || "";
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
 
-const isConfigured = !!supabaseUrl && !!supabaseAnonKey;
+const isConfigured = !!supabaseUrl && !!supabaseAnonKey && 
+                     supabaseUrl !== "MASUKKAN_URL_SUPABASE_ANDA" && 
+                     supabaseAnonKey !== "MASUKKAN_ANON_KEY_SUPABASE_ANDA";
 
 declare global {
   var __bk_supabase__: SupabaseClient | undefined;
