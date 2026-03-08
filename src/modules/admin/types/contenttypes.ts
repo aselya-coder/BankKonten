@@ -8,6 +8,7 @@ export type KeunggulanContent = {
   title: string;
   subtitle: string;
   items: KeunggulanItem[];
+  button_text?: string;
 };
 
 export type WhyContentItem = {
@@ -22,6 +23,7 @@ export type WhyContent = {
   description: string;
   global_icon?: string;
   items: WhyContentItem[];
+  button_text?: string;
 };
 
 export type UrgencyItem = {
@@ -57,24 +59,4 @@ export type WhatsAppContent = {
   phone_number: string;
   message: string;
   show_button?: boolean;
-};
-
-export type ProblemItem = {
-  title: string;
-};
-
-export type ProblemsContent = {
-  title: string;
-  items: ProblemItem[];
-};
-
-export type ServiceItem = {
-  icon: string;
-  title: string;
-  description: string;
-};
-
-export type ServicesContent = {
-  title: string;
-  items: ServiceItem[];
 };

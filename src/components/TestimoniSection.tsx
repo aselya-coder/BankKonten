@@ -27,7 +27,7 @@ const TestimoniSection = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(217_91%_60%_/_0.06),transparent_60%)]" />
       <div className="container relative z-10">
         <div className="text-center mb-14">
-          <span className="text-primary font-bold text-sm uppercase tracking-widest">Testimoni</span>
+          <span className="text-primary font-bold text-sm uppercase tracking-widest">{content.badge_text || "Testimoni"}</span>
           <h2 className="text-3xl md:text-5xl font-black mt-2 mb-4">
             {titleParts ? (
               <>
@@ -38,7 +38,7 @@ const TestimoniSection = () => {
               <span className="text-gradient">{content.title}</span>
             )}
           </h2>
-          <p className="text-muted-foreground text-lg">Ribuan seller sudah pakai BankKonten.id. Kapan giliran kamu?</p>
+          <p className="text-muted-foreground text-lg">{content.subtitle || "Ribuan seller sudah pakai BankKonten.id. Kapan giliran kamu?"}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
@@ -63,7 +63,7 @@ const TestimoniSection = () => {
 
         <div className="text-center mb-8">
           <h3 className="text-2xl md:text-3xl font-bold font-display mb-6">
-            Cocok Untuk Siapa?
+            {content.target_users_title || "Cocok Untuk Siapa?"}
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
             {content.target_users.map((u, i) => (
@@ -75,7 +75,7 @@ const TestimoniSection = () => {
         </div>
 
         <div className="text-center mt-6">
-          <WhatsAppButton text="🚀 Gabung Sekarang!" variant="urgent" />
+          <WhatsAppButton text={content.button_text || "🚀 Gabung Sekarang!"} variant="urgent" />
         </div>
       </div>
     </section>

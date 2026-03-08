@@ -41,9 +41,26 @@ const TestimoniEditor = () => {
       <CardHeader>
         <CardTitle>Testimoni</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-3">
-        <Input value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} placeholder="title" />
-        <div className="space-y-4">
+      <CardContent className="space-y-4">
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Judul Section</label>
+          <Input value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} placeholder="title" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Badge (Teks kecil di atas judul)</label>
+          <Input value={data.badge_text} onChange={(e) => setData({ ...data, badge_text: e.target.value })} placeholder="badge_text" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Sub-judul / Deskripsi</label>
+          <Input value={data.subtitle} onChange={(e) => setData({ ...data, subtitle: e.target.value })} placeholder="subtitle" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Teks Tombol WhatsApp (Bawah)</label>
+          <Input value={data.button_text} onChange={(e) => setData({ ...data, button_text: e.target.value })} placeholder="button_text" />
+        </div>
+
+        <div className="space-y-4 pt-4 border-t">
+          <label className="text-sm font-medium">Daftar Testimoni</label>
           {data.testimonials.map((it, idx) => (
             <div key={idx} className="border rounded-md p-3 space-y-2">
               <Input value={it.name} onChange={(e) => updateItem(idx, { name: e.target.value })} placeholder="name" />
@@ -61,8 +78,13 @@ const TestimoniEditor = () => {
           ))}
           <Button variant="outline" onClick={addItem}>Tambah Testimoni</Button>
         </div>
-        <div className="space-y-2">
-          <p className="font-medium">Target Users</p>
+
+        <div className="space-y-2 pt-4 border-t">
+          <div className="space-y-1 mb-2">
+            <label className="text-sm font-medium">Judul Section Target User</label>
+            <Input value={data.target_users_title} onChange={(e) => setData({ ...data, target_users_title: e.target.value })} placeholder="target_users_title" />
+          </div>
+          <p className="font-medium text-sm">Daftar Target Users</p>
           {data.target_users.map((u: TargetUser, idx: number) => (
             <div key={idx} className="grid grid-cols-1 md:grid-cols-[8rem_1fr_auto] gap-2 items-center">
               <Input value={u.emoji} onChange={(e) => setData({ ...data, target_users: data.target_users.map((x, i) => i === idx ? { ...x, emoji: e.target.value } : x) })} placeholder="emoji" />

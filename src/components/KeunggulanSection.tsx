@@ -64,7 +64,7 @@ const KeunggulanSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <WhatsAppButton text="💬 Chat Kami Sekarang" />
+          <WhatsAppButton text={content.button_text || "💬 Chat Kami Sekarang"} />
         </div>
       </div>
     </section>

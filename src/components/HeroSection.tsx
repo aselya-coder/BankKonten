@@ -1,5 +1,6 @@
 import WhatsAppButton from "./WhatsAppButton";
-import { Zap, Clock, AlertTriangle } from "lucide-react";
+import * as Icons from "lucide-react";
+import type { ComponentType } from "react";
 import { useEffect, useState, useMemo } from "react";
 import { fetchContent } from "@/lib/cms";
 import { defaultHero, defaultPricing } from "@/modules/admin/data/mockContent";
@@ -36,7 +37,7 @@ const HeroSection = () => {
       <div className="container relative z-10 text-center py-20 px-4">
         {/* Urgency badge */}
         <div className="inline-flex items-center gap-2 bg-urgent/20 border border-urgent/40 rounded-full px-4 py-2 mb-6 animate-pulse-glow">
-          <AlertTriangle className="w-4 h-4 text-urgent" />
+          <Icons.AlertTriangle className="w-4 h-4 text-urgent" />
           <span className="text-sm font-bold text-urgent">{content.badge_text}</span>
         </div>
 
@@ -57,14 +58,16 @@ const HeroSection = () => {
 
         {/* Trust badges */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
-          <div className="flex items-center gap-2 bg-secondary rounded-full px-4 py-2">
-            <Zap className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">Proses Cepat</span>
-          </div>
-          <div className="flex items-center gap-2 bg-secondary rounded-full px-4 py-2">
-            <Clock className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">24 Jam Selesai</span>
-          </div>
+          {(content.trust_badges || defaultHero.trust_badges)?.map((tb, i) => {
+            const iconSet = Icons as unknown as Record<string, ComponentType<{ className?: string }>>;
+            const Icon = iconSet[tb.icon] ?? Icons.Zap;
+            return (
+              <div key={i} className="flex items-center gap-2 bg-secondary rounded-full px-4 py-2">
+                <Icon className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium">{tb.text}</span>
+              </div>
+            );
+          })}
         </div>
 
         <WhatsAppButton variant="hero" text={content.button_text} />

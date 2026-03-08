@@ -85,7 +85,7 @@ const WhyContentSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <WhatsAppButton text="💬 Tanya Dulu, GRATIS!" />
+          <WhatsAppButton text={content.button_text || "💬 Tanya Dulu, GRATIS!"} />
         </div>
       </div>
     </section>

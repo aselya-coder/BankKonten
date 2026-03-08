@@ -1,7 +1,7 @@
 import { HeroContent } from "../types/heroTypes";
 import { PricingContent } from "../types/pricingTypes";
 import { TestimonialContent } from "../types/testimonialTypes";
-import { KeunggulanContent, WhyContent, UrgencyContent, NavLinkItem, FooterContent, WhatsAppContent, ProblemsContent, ServicesContent } from "../types/contenttypes";
+import { KeunggulanContent, WhyContent, UrgencyContent, NavLinkItem, FooterContent, WhatsAppContent } from "../types/contenttypes";
 
 export const defaultHero: HeroContent = {
   title: "Gambar AI Cuma Rp 1.000",
@@ -10,10 +10,16 @@ export const defaultHero: HeroContent = {
   button_link: "https://wa.me/6285646420488?text=Halo%20BankKonten.id%2C%20saya%20mau%20order%20gambar%20AI!",
   badge_text: "⚡ PROMO TERBATAS — Stok Bisa Habis Kapan Saja!",
   bottom_text: "⏳ Harga bisa naik sewaktu-waktu tanpa pemberitahuan",
+  trust_badges: [
+    { icon: "Zap", text: "Proses Cepat" },
+    { icon: "Clock", text: "24 Jam Selesai" },
+  ],
 };
 
 export const defaultPricing: PricingContent = {
   title: "Pilih Paket Terbaikmu",
+  badge_text: "Harga Gila",
+  subtitle: "Harga termurah se-Indonesia. Serius.",
   tiers: [
     { package_name: "Starter", price: "Rp 20.000", features: ["20 gambar AI HD", "Revisi 1x", "Format PNG/JPG", "Kirim via Google Drive"], button_text: "Order 20 Gambar" },
     { package_name: "Best Seller 🔥", price: "Rp 45.000", features: ["50 gambar AI HD", "Revisi 2x", "Format PNG/JPG", "Kirim via Google Drive", "Bonus 5 gambar", "Priority queue"], button_text: "Order 50 Gambar" },
@@ -24,6 +30,8 @@ export const defaultPricing: PricingContent = {
 
 export const defaultTestimonials: TestimonialContent = {
   title: "Mereka Sudah Buktikan",
+  badge_text: "Testimoni",
+  subtitle: "Ribuan seller sudah pakai BankKonten.id. Kapan giliran kamu?",
   testimonials: [
     { name: "Rina S.", role: "Seller Shopee", message: "Gila sih, Rp 20rb dapet 20 gambar kualitas HD. Listing saya langsung naik viewsnya 3x lipat!", photo: "", stars: 5 },
     { name: "Budi A.", role: "Owner Brand Skincare", message: "Biasanya bayar desainer Rp 500K/bulan. Sekarang hemat banget, kualitasnya bahkan lebih konsisten.", photo: "", stars: 5 },
@@ -38,6 +46,8 @@ export const defaultTestimonials: TestimonialContent = {
     { emoji: "📲", label: "Admin Sosial Media" },
     { emoji: "🎨", label: "Content Creator" },
   ],
+  target_users_title: "Cocok Untuk Siapa?",
+  button_text: "🚀 Gabung Sekarang!",
 };
 
 export const defaultKeunggulan: KeunggulanContent = {
@@ -51,6 +61,7 @@ export const defaultKeunggulan: KeunggulanContent = {
     { icon: "Clock", title: "Support Fast Response", description: "Tim kami siap membantu via WhatsApp. Respon cepat, gak di-ghosting." },
     { icon: "Layers", title: "Resolusi Tinggi", description: "Semua gambar dalam kualitas HD, siap posting tanpa pecah." },
   ],
+  button_text: "💬 Chat Kami Sekarang",
 };
 
 export const defaultWhyContent: WhyContent = {
@@ -65,6 +76,7 @@ export const defaultWhyContent: WhyContent = {
     { icon: "Images", title: "Hemat Biaya Desainer", description: "Hire desainer? Minimal Rp 500K per bulan. Di sini cuma Rp 20.000 dapat 20 gambar berkualitas." },
     { icon: "Target", title: "Cocok untuk Semua Niche", description: "Fashion, F&B, skincare, digital product — gambar AI bisa disesuaikan dengan brand apapun." },
   ],
+  button_text: "💬 Tanya Dulu, GRATIS!",
 };
 
 export const defaultUrgency: UrgencyContent = {
@@ -77,24 +89,6 @@ export const defaultUrgency: UrgencyContent = {
     { icon: "Clock", title: "Kuota Terbatas", description: "Hanya untuk 100 order pertama" },
     { icon: "TrendingDown", title: "Harga Akan Naik", description: "Jadi Rp 3.000/gambar setelah promo" },
     { icon: "XCircle", title: "Tanpa Pemberitahuan", description: "Promo bisa ditutup kapan saja" },
-  ],
-};
-
-export const defaultProblems: ProblemsContent = {
-  title: "Masalah Umum",
-  items: [
-    { title: "Kesulitan produksi konten harian" },
-    { title: "Biaya desain mahal" },
-    { title: "Engagement menurun" },
-  ],
-};
-
-export const defaultServices: ServicesContent = {
-  title: "Layanan",
-  items: [
-    { icon: "Zap", title: "Produksi Cepat", description: "Kirim konten dalam 24 jam" },
-    { icon: "Palette", title: "Kustom Tema", description: "Sesuai brand kamu" },
-    { icon: "Shield", title: "Asli", description: "Konten unik" },
   ],
 };
 
@@ -126,8 +120,6 @@ export const mockCmsData = {
   keunggulan: defaultKeunggulan,
   whyContent: defaultWhyContent,
   urgency: defaultUrgency,
-  problems: defaultProblems,
-  services: defaultServices,
   navLinks: defaultNavLinks,
   footer: defaultFooter,
   whatsapp: defaultWhatsApp,

@@ -37,13 +37,59 @@ const HeroEditor = () => {
         <CardTitle>Hero Section</CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
-        <Input value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} placeholder="headline" />
-        <Input value={data.subtitle} onChange={(e) => setData({ ...data, subtitle: e.target.value })} placeholder="subheadline" />
-        <Input value={data.button_text} onChange={(e) => setData({ ...data, button_text: e.target.value })} placeholder="button_text" />
-        <Input value={data.button_link} onChange={(e) => setData({ ...data, button_link: e.target.value })} placeholder="button_link" />
-        <Input value={data.badge_text} onChange={(e) => setData({ ...data, badge_text: e.target.value })} placeholder="badge_text (promo di atas judul)" />
-        <Input value={data.bottom_text} onChange={(e) => setData({ ...data, bottom_text: e.target.value })} placeholder="bottom_text (disclaimer kecil di bawah tombol)" />
-        <Input value={data.hero_image ?? ""} onChange={(e) => setData({ ...data, hero_image: e.target.value })} placeholder="hero_image (opsional)" />
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Headline</label>
+          <Input value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} placeholder="headline" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Subheadline</label>
+          <Input value={data.subtitle} onChange={(e) => setData({ ...data, subtitle: e.target.value })} placeholder="subheadline" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Button Text</label>
+          <Input value={data.button_text} onChange={(e) => setData({ ...data, button_text: e.target.value })} placeholder="button_text" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Button Link</label>
+          <Input value={data.button_link} onChange={(e) => setData({ ...data, button_link: e.target.value })} placeholder="button_link" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Badge Text (Promo di atas judul)</label>
+          <Input value={data.badge_text} onChange={(e) => setData({ ...data, badge_text: e.target.value })} placeholder="badge_text" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Bottom Text (Disclaimer kecil)</label>
+          <Input value={data.bottom_text} onChange={(e) => setData({ ...data, bottom_text: e.target.value })} placeholder="bottom_text" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Hero Image URL (Opsional)</label>
+          <Input value={data.hero_image ?? ""} onChange={(e) => setData({ ...data, hero_image: e.target.value })} placeholder="hero_image" />
+        </div>
+
+        <div className="space-y-2 pt-4 border-t">
+          <label className="text-sm font-medium">Trust Badges (ikon Lucide + teks)</label>
+          {data.trust_badges?.map((tb, idx) => (
+            <div key={idx} className="flex gap-2">
+              <Input value={tb.icon} onChange={(e) => {
+                const badges = [...(data.trust_badges || [])];
+                badges[idx] = { ...badges[idx], icon: e.target.value };
+                setData({ ...data, trust_badges: badges });
+              }} placeholder="Icon (e.g. Zap)" />
+              <Input value={tb.text} onChange={(e) => {
+                const badges = [...(data.trust_badges || [])];
+                badges[idx] = { ...badges[idx], text: e.target.value };
+                setData({ ...data, trust_badges: badges });
+              }} placeholder="Text" />
+              <Button variant="destructive" size="icon" onClick={() => {
+                const badges = data.trust_badges?.filter((_, i) => i !== idx);
+                setData({ ...data, trust_badges: badges });
+              }}>✕</Button>
+            </div>
+          ))}
+          <Button variant="outline" size="sm" onClick={() => {
+            setData({ ...data, trust_badges: [...(data.trust_badges || []), { icon: "Zap", text: "" }] });
+          }}>Tambah Trust Badge</Button>
+        </div>
       </CardContent>
       <CardFooter>
         <Button onClick={onSave} disabled={saving}>{saving ? "Menyimpan..." : "Simpan"}</Button>

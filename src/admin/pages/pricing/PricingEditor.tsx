@@ -45,9 +45,24 @@ const PricingEditor = () => {
         <CardTitle>Pricing</CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
-        <Input value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} placeholder="title" />
-        <Input value={data.promo_text} onChange={(e) => setData({ ...data, promo_text: e.target.value })} placeholder="promo_text (teks kecil di bawah paket)" />
-        <div className="space-y-4">
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Judul Section</label>
+          <Input value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} placeholder="title" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Badge (Teks kecil di atas judul)</label>
+          <Input value={data.badge_text} onChange={(e) => setData({ ...data, badge_text: e.target.value })} placeholder="badge_text" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Sub-judul / Deskripsi</label>
+          <Input value={data.subtitle} onChange={(e) => setData({ ...data, subtitle: e.target.value })} placeholder="subtitle" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Teks Promo (Bawah)</label>
+          <Input value={data.promo_text} onChange={(e) => setData({ ...data, promo_text: e.target.value })} placeholder="promo_text" />
+        </div>
+        <div className="space-y-4 pt-4 border-t">
+          <label className="text-sm font-medium">Paket Harga</label>
           {data.tiers.map((it, idx) => (
             <div key={idx} className="border rounded-md p-3 space-y-2">
               <Input value={it.package_name} onChange={(e) => updateTier(idx, { package_name: e.target.value })} placeholder="package_name" />

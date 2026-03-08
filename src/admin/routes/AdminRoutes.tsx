@@ -3,8 +3,6 @@ import AdminLayout from "@/admin/components/AdminLayout";
 import DashboardPage from "@/admin/pages/dashboard/DashboardPage";
 import HeroEditor from "@/admin/pages/hero/HeroEditor";
 import WhyContentEditor from "@/admin/pages/why/WhyContentEditor";
-import ProblemsEditor from "@/admin/pages/problems/ProblemsEditor";
-import ServicesEditor from "@/admin/pages/services/ServicesEditor";
 import KeunggulanEditor from "@/admin/pages/keunggulan/KeunggulanEditor";
 import PricingEditor from "@/admin/pages/pricing/PricingEditor";
 import TestimoniEditor from "@/admin/pages/testimoni/TestimoniEditor";
@@ -21,8 +19,6 @@ const AdminRoutes = () => {
         <Route index element={<DashboardPage />} />
         <Route path="hero" element={<HeroEditor />} />
         <Route path="why" element={<WhyContentEditor />} />
-        <Route path="problems" element={<ProblemsEditor />} />
-        <Route path="services" element={<ServicesEditor />} />
         <Route path="keunggulan" element={<KeunggulanEditor />} />
         <Route path="pricing" element={<PricingEditor />} />
         <Route path="testimoni" element={<TestimoniEditor />} />

@@ -6,4 +6,5 @@ export type HeroContent = {
   badge_text: string;
   bottom_text: string;
   hero_image?: string;
+  trust_badges?: { icon: string; text: string }[];
 };

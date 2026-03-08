@@ -47,11 +47,26 @@ const WhyContentEditor = () => {
       <CardHeader>
         <CardTitle>Why Content</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-3">
-        <Input value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} placeholder="title" />
-        <Input value={data.subtitle} onChange={(e) => setData({ ...data, subtitle: e.target.value })} placeholder="subtitle" />
-        <Textarea value={data.description} onChange={(e) => setData({ ...data, description: e.target.value })} placeholder="description" />
-        <div className="space-y-2">
+      <CardContent className="space-y-4">
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Judul (Badge)</label>
+          <Input value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} placeholder="title" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Sub-judul (Besar)</label>
+          <Input value={data.subtitle} onChange={(e) => setData({ ...data, subtitle: e.target.value })} placeholder="subtitle" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Deskripsi</label>
+          <Textarea value={data.description} onChange={(e) => setData({ ...data, description: e.target.value })} placeholder="description" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium">Teks Tombol WhatsApp</label>
+          <Input value={data.button_text ?? ""} onChange={(e) => setData({ ...data, button_text: e.target.value })} placeholder="button_text" />
+        </div>
+
+        <div className="space-y-2 pt-4 border-t">
+          <label className="text-sm font-medium">Daftar Alasan</label>
           {data.items.map((it, idx) => (
             <div key={idx} className="grid grid-cols-1 md:grid-cols-[10rem_1fr_1fr_auto] gap-2 items-center">
               <Input value={it.icon} onChange={(e) => updateItem(idx, { icon: e.target.value })} placeholder="icon" />

@@ -40,7 +40,7 @@ const PricingSection = () => {
     <section className="py-20 px-4 relative">
       <div className="container relative z-10">
         <div className="text-center mb-14">
-          <span className="text-primary font-bold text-sm uppercase tracking-widest">Harga Gila</span>
+          <span className="text-primary font-bold text-sm uppercase tracking-widest">{content.badge_text || "Harga Gila"}</span>
           <h2 className="text-3xl md:text-5xl font-black mt-2 mb-4">
             {titleParts ? (
               <>
@@ -51,7 +51,7 @@ const PricingSection = () => {
               <span className="text-gradient">{content.title}</span>
             )}
           </h2>
-          <p className="text-muted-foreground text-lg">Harga termurah se-Indonesia. <span className="text-urgent font-bold">Serius.</span></p>
+          <p className="text-muted-foreground text-lg">{content.subtitle || "Harga termurah se-Indonesia. Serius."}</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">

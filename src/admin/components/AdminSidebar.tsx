@@ -5,8 +5,6 @@ const items = [
   { to: "/admin", label: "Dashboard" },
   { to: "/admin/hero", label: "Hero Section" },
   { to: "/admin/why", label: "Why Content" },
-  { to: "/admin/problems", label: "Problems" },
-  { to: "/admin/services", label: "Services" },
   { to: "/admin/keunggulan", label: "Keunggulan" },
   { to: "/admin/pricing", label: "Pricing" },
   { to: "/admin/testimoni", label: "Testimoni" },
@@ -18,7 +16,7 @@ const items = [
 const AdminSidebar = () => {
   return (
     <aside className="h-screen w-64 border-r border-border bg-card p-4 hidden md:block">
-      <div className="px-2 py-3 font-bold text-xl">BankKonten CMS</div>
+      <div className="px-2 py-3 font-bold text-xl">BankKonten</div>
       <nav className="space-y-1">
         {items.map((it) => (
           <NavLink
