@@ -69,24 +69,24 @@ const HeroEditor = () => {
         <div className="space-y-2 pt-4 border-t">
           <label className="text-sm font-medium">Trust Badges (ikon Lucide + teks)</label>
           {data.trust_badges?.map((tb, idx) => (
-            <div key={idx} className="flex gap-2">
-              <Input value={tb.icon} onChange={(e) => {
+            <div key={idx} className="flex flex-col sm:flex-row gap-2">
+              <Input className="sm:w-32" value={tb.icon} onChange={(e) => {
                 const badges = [...(data.trust_badges || [])];
                 badges[idx] = { ...badges[idx], icon: e.target.value };
                 setData({ ...data, trust_badges: badges });
               }} placeholder="Icon (e.g. Zap)" />
-              <Input value={tb.text} onChange={(e) => {
+              <Input className="flex-1" value={tb.text} onChange={(e) => {
                 const badges = [...(data.trust_badges || [])];
                 badges[idx] = { ...badges[idx], text: e.target.value };
                 setData({ ...data, trust_badges: badges });
               }} placeholder="Text" />
-              <Button variant="destructive" size="icon" onClick={() => {
+              <Button className="w-full sm:w-auto" variant="destructive" size="icon" onClick={() => {
                 const badges = data.trust_badges?.filter((_, i) => i !== idx);
                 setData({ ...data, trust_badges: badges });
               }}>✕</Button>
             </div>
           ))}
-          <Button variant="outline" size="sm" onClick={() => {
+          <Button variant="outline" size="sm" className="w-full sm:w-auto" onClick={() => {
             setData({ ...data, trust_badges: [...(data.trust_badges || []), { icon: "Zap", text: "" }] });
           }}>Tambah Trust Badge</Button>
         </div>

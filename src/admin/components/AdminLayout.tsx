@@ -3,6 +3,7 @@ import AdminSidebar from "./AdminSidebar";
 import AdminNavbar from "./AdminNavbar";
 import { useEffect, useState } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabaseClient";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -26,15 +27,19 @@ const AdminLayout = () => {
   if (!ready) return null;
 
   return (
-    <div className="min-h-screen grid grid-cols-1 md:grid-cols-[16rem_1fr]">
-      <AdminSidebar />
-      <div className="flex flex-col">
-        <AdminNavbar />
-        <main className="p-4">
-          <Outlet />
-        </main>
+    <SidebarProvider>
+      <div className="flex min-h-screen w-full bg-background">
+        <AdminSidebar />
+        <SidebarInset className="flex flex-col flex-1">
+          <AdminNavbar />
+          <main className="flex-1 p-4 md:p-6 lg:p-8 w-full">
+            <div className="max-w-5xl mx-auto">
+              <Outlet />
+            </div>
+          </main>
+        </SidebarInset>
       </div>
-    </div>
+    </SidebarProvider>
   );
 };
 
