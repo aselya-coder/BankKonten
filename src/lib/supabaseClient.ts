@@ -13,7 +13,11 @@ declare global {
 
 export const supabase: SupabaseClient | null = isConfigured
   ? (globalThis.__bk_supabase__ ??= createClient(supabaseUrl, supabaseAnonKey, {
-      auth: { persistSession: true, autoRefreshToken: true, storageKey: "bk_auth" },
+      auth: { 
+        persistSession: false, // Diubah menjadi false agar sesi tidak disimpan selamanya (auto-logout saat tab ditutup)
+        autoRefreshToken: true, 
+        storageKey: "bk_auth" 
+      },
     }))
   : null;
 
