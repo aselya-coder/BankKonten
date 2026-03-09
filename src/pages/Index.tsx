@@ -6,10 +6,12 @@ import KeunggulanSection from "@/components/KeunggulanSection";
 import UrgencySection from "@/components/UrgencySection";
 import FooterSection from "@/components/FooterSection";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import MainNavbar from "@/components/MainNavbar";
 
 const Index = () => {
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <MainNavbar />
       <HeroSection />
       <WhyContentSection />
       <PricingSection />
